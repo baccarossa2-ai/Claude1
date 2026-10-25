@@ -1,0 +1,12 @@
+/* Code colours tuned for the dark code surface (used in both themes). */
+.hljs-comment, .hljs-quote { color: #6b7394; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-type { color: #c792ea; }
+.hljs-string, .hljs-regexp, .hljs-addition, .hljs-attribute, .hljs-meta .hljs-string { color: #a5e3a0; }
+.hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-symbol, .hljs-bullet { color: #f7a76c; }
+.hljs-title, .hljs-section, .hljs-title.function_ { color: #82aaff; }
+.hljs-variable, .hljs-template-variable, .hljs-attr, .hljs-params { color: #f2c36b; }
+.hljs-name, .hljs-tag, .hljs-selector-id, .hljs-selector-class { color: #ff8b94; }
+.hljs-meta, .hljs-doctag { color: #89ddff; }
+.hljs-deletion { color: #ff8b94; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }

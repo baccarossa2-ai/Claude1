@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Artifacts are model-written pages: they get their own permissive policy
+         here, inside an iframe sandboxed without allow-same-origin, so nothing
+         they run can reach the app, its storage or its native bridge. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: blob: 'unsafe-inline' 'unsafe-eval'; img-src * data: blob:; media-src * data: blob:; font-src * data:" />
+    <style>
+      html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; display: grid; place-items: center; color: #888; }
+    </style>
+  </head>
+  <body>
+    <div>Caricamento…</div>
+    <script>
+      window.addEventListener("message", function (e) {
+        var d = e.data || {};
+        if (d.type !== "cloudy-artifact") return;
+        var html = d.kind === "svg" ? '<!doctype html><meta charset="utf-8"><body style="margin:0;display:grid;place-items:center;min-height:100vh;background:#fff">' + d.content + "</body>" : d.content;
+        document.open();
+        document.write(html);
+        document.close();
+      });
+      parent.postMessage({ type: "cloudy-artifact-ready" }, "*");
+    </script>
+  </body>
+</html>

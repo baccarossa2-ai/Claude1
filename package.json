@@ -1,0 +1,130 @@
+{
+  "name": "cloudy-desktop",
+  "productName": "Cloudy",
+  "version": "2.0.0",
+  "description": "Cloudy Desktop & Mobile — il chatbot Cloudy con agente Code/Cowork, collegamento Claude, provider personalizzati, plugin, skills, connettori e un computer Linux tutto suo.",
+  "main": "electron/main.cjs",
+  "author": {
+    "name": "Cloudy Desktop",
+    "email": "baccarossa2@gmail.com"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build:web": "node scripts/build-web.mjs",
+    "build:icons": "node scripts/make-icons.mjs",
+    "start": "npm run build:web && electron .",
+    "dev:web": "node scripts/build-web.mjs --serve",
+    "test": "node --test tests/unit/*.test.mjs",
+    "test:e2e": "node tests/e2e/electron.e2e.mjs",
+    "dist:win": "npm run build:web && electron-builder --win nsis --x64",
+    "dist:linux": "npm run build:web && electron-builder --linux dir",
+    "cap:sync": "npm run build:web -- --mobile && npx cap sync android",
+    "dist:apk": "npm run cap:sync && cd android && ./gradlew assembleRelease"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.3",
+    "electron": "^44.9.3",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.28.2",
+    "@anthropic-ai/sdk": "^1.3.0",
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/browser": "^8.0.5",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/filesystem": "^8.1.5",
+    "@capacitor/keyboard": "^8.0.6",
+    "@capacitor/splash-screen": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.4",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
+    "dompurify": "^3.4.17",
+    "highlight.js": "^11.12.0",
+    "marked": "^18.1.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "v86": "^0.5.472"
+  },
+  "dependencies": {},
+  "type": "module",
+  "homepage": "https://cloudy.chat",
+  "build": {
+    "appId": "chat.cloudy.desktop",
+    "productName": "Cloudy",
+    "copyright": "© 2026 Cloudy Desktop — basato su cloudy-cli (MIT, © 2026 Cloudy)",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**",
+      "www/**",
+      "original/**",
+      "build/icon.png",
+      "build/icon.ico",
+      "package.json",
+      "!**/*.map"
+    ],
+    "asarUnpack": [
+      "original/**"
+    ],
+    "electronLanguages": [
+      "it",
+      "en-US",
+      "en-GB",
+      "es",
+      "fr",
+      "de",
+      "pt-BR"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "Cloudy-Setup-${version}.${ext}",
+      "executableName": "Cloudy",
+      "legalTrademarks": "Cloudy"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Cloudy",
+      "menuCategory": false,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "installerSidebar": "build/installerSidebar.bmp",
+      "uninstallerSidebar": "build/uninstallerSidebar.bmp",
+      "installerHeader": "build/installerHeader.bmp",
+      "license": "build/license.txt",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "installerLanguages": [
+        "it_IT"
+      ],
+      "language": "1040",
+      "include": "build/installer.nsh",
+      "uninstallDisplayName": "Cloudy ${version}"
+    },
+    "linux": {
+      "target": [
+        "dir"
+      ],
+      "icon": "build/icon.png",
+      "category": "Utility",
+      "executableName": "cloudy"
+    }
+  }
+}

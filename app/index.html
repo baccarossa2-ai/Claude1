@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="theme-color" content="#0b0d16" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; img-src * data: blob:; media-src * data: blob:; font-src 'self' data:; connect-src * data: blob:; frame-src * data: blob:; worker-src 'self' blob:; child-src * blob: data:"
+    />
+    <title>Cloudy</title>
+    <link rel="icon" href="assets/logos/cloudee-favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="boot">
+      <div class="boot-cloud"></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

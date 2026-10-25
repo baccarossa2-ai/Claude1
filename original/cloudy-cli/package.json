@@ -1,0 +1,52 @@
+{
+  "name": "cloudy-cli",
+  "version": "1.0.0",
+  "description": "Cloudy in your terminal — chat, one-shot asks, and the coding agent that runs in the folder you are standing in. Same account, models and quota as the web app.",
+  "type": "module",
+  "bin": {
+    "cloudy": "bin/cloudy.mjs"
+  },
+  "//files": "What an install actually needs: the bin, the TUI sources it loads, and the bundled stdio hosts. Tests and build tooling stay out of the tarball, and so do the bundles' source maps — they inline the full source of cloudy-core, which is private.",
+  "files": [
+    "bin/",
+    "src/",
+    "dist/",
+    "!dist/*.map",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Cloudy"
+  },
+  "homepage": "https://cloudy.chat",
+  "keywords": [
+    "cloudy",
+    "ai",
+    "chat",
+    "cli",
+    "terminal",
+    "tui",
+    "coding-agent"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test \"tests/*.test.js\"",
+    "//prepublishOnly": "dist/ is built, not committed: a published tarball would otherwise ship without the stdio host and `cloudy serve --stdio` would fail on every install.",
+    "prepublishOnly": "node build.mjs"
+  },
+  "dependencies": {
+    "ink": "^7.1.1",
+    "react": "^19.3.0"
+  },
+  "//devDependencies": "cloudy-core is build-time only: src/serve.js and src/import.js import it, and build.mjs bundles both into dist/*.cjs, so an installed copy needs no copy of it.",
+  "devDependencies": {
+    "cloudy-core": "*",
+    "esbuild": "^0.24.0"
+  }
+}

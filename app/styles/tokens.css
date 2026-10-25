@@ -1,0 +1,79 @@
+/* Design tokens. The monochrome base follows the original CLI tokens
+   (bg #000 → here a night sky, text #f2f3f5, border #3a3a3a); the accent and
+   the per-model dots come from the same token set. */
+:root {
+  --accent: #7c9cff;
+  --accent-2: #b38cff;
+  --claude: #d97757;
+  --ok: #34d399;
+  --warn: #fbbf24;
+  --err: #f87171;
+  --font: "Inter Variable", "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  --mono: "JetBrains Mono", "Cascadia Code", "Consolas", ui-monospace, monospace;
+  --font-scale: 1;
+  --r-sm: 8px;
+  --r: 12px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+  --sidebar-w: 272px;
+  --panel-w: 440px;
+  --titlebar-h: 46px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #07080f;
+  --bg-2: #0d1020;
+  --sky-1: rgba(92, 120, 255, 0.22);
+  --sky-2: rgba(179, 140, 255, 0.16);
+  --sky-3: rgba(56, 189, 248, 0.12);
+  --surface: rgba(255, 255, 255, 0.045);
+  --surface-2: rgba(255, 255, 255, 0.075);
+  --surface-3: rgba(255, 255, 255, 0.11);
+  --solid: #111426;
+  --solid-2: #171b31;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text: #f2f3f5;
+  --text-2: #b6bccb;
+  --text-3: #7d8499;
+  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.75), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --glass: blur(22px) saturate(140%);
+  --code-bg: #0a0c18;
+  --user-bubble: linear-gradient(135deg, rgba(124, 156, 255, 0.22), rgba(179, 140, 255, 0.18));
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef1f8;
+  --bg-2: #f7f8fc;
+  --sky-1: rgba(124, 156, 255, 0.28);
+  --sky-2: rgba(236, 72, 153, 0.12);
+  --sky-3: rgba(56, 189, 248, 0.18);
+  --surface: rgba(255, 255, 255, 0.62);
+  --surface-2: rgba(255, 255, 255, 0.82);
+  --surface-3: rgba(15, 23, 42, 0.06);
+  --solid: #ffffff;
+  --solid-2: #f3f5fb;
+  --border: rgba(15, 23, 42, 0.09);
+  --border-strong: rgba(15, 23, 42, 0.18);
+  --text: #0f1222;
+  --text-2: #475069;
+  --text-3: #7a8299;
+  --shadow: 0 20px 50px -24px rgba(30, 41, 80, 0.35), 0 2px 8px rgba(30, 41, 80, 0.08);
+  --glass: blur(22px) saturate(160%);
+  --code-bg: #0e1121;
+  --user-bubble: linear-gradient(135deg, rgba(124, 156, 255, 0.2), rgba(179, 140, 255, 0.16));
+}
+
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}

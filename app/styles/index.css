@@ -1,0 +1,10 @@
+@import "../../node_modules/@fontsource-variable/inter/index.css";
+@import "../../node_modules/@fontsource/jetbrains-mono/400.css";
+@import "../../node_modules/@fontsource/jetbrains-mono/600.css";
+@import "../../node_modules/@xterm/xterm/css/xterm.css";
+@import "./tokens.css";
+@import "./app.css";
+@import "./chat.css";
+@import "./panels.css";
+@import "./apps.css";
+@import "./hljs.css";

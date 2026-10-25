@@ -1,0 +1,18 @@
+node_modules/
+www/
+dist/
+test-results/
+build/_tmp_*.html
+*.log
+.DS_Store
+
+# Android: generated web copy and build outputs (android/.gitignore covers the rest)
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/capacitor-cordova-android-plugins/
+
+# Signing material never belongs in the repository
+*.jks
+*.keystore
+keystore-password.txt

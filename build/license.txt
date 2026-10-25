@@ -1,0 +1,34 @@
+CLOUDY DESKTOP 2.0 — LICENZA
+
+Cloudy Desktop è distribuito con licenza MIT.
+
+Include, senza modifiche, il pacchetto originale "cloudy-cli" 1.0.0
+(https://www.npmjs.com/package/cloudy-cli), Copyright (c) 2026 Cloudy,
+distribuito con licenza MIT:
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+Componenti di terze parti: Electron (MIT), v86 (BSD-2-Clause), kernel Linux
+Buildroot (GPL-2.0), React (MIT), Anthropic SDK (MIT), marked (MIT),
+DOMPurify (Apache-2.0/MPL-2.0), highlight.js (BSD-3-Clause), xterm.js (MIT),
+Inter e JetBrains Mono (SIL OFL 1.1).
+
+Claude è un marchio di Anthropic. I loghi dei modelli appartengono ai
+rispettivi titolari e sono mostrati solo per identificare i modelli.
+L'uso dei servizi Cloudy e Claude è soggetto ai rispettivi termini.
