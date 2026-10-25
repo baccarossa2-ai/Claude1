@@ -747,6 +747,14 @@ const ACCENTS = ["#7c9cff", "#b38cff", "#38bdf8", "#34d399", "#fbbf24", "#fb7185
 function Appearance() {
   const s = useStore(store, (x) => x.settings);
   const set = (patch) => applyTheme(updateSettings(patch));
+  const [gpu, setGpu] = useState(null);
+  useEffect(() => {
+    if (isDesktop) invoke("app:gpu").then(setGpu, () => {});
+  }, []);
+  const switchGpu = async (on) => {
+    toast(on ? "Riattivo l'accelerazione hardware: Cloudy si riavvia…" : "Passo al rendering software: Cloudy si riavvia…");
+    setGpu(await invoke("app:gpu", on));
+  };
   return (
     <>
       <h2>Aspetto</h2>
@@ -774,6 +782,14 @@ function Appearance() {
         <Row t="Card sponsor" d="Gli sponsor tengono Cloudy gratuito (si apre solo con un clic, come nella CLI)">
           <Switch on={s.sponsor} onChange={(v) => set({ sponsor: v })} />
         </Row>
+        {isDesktop && gpu && (
+          <Row
+            t="Accelerazione hardware"
+            d={gpu.enabled ? "Usa la scheda video per animazioni fluide. Spegnila se vedi schermate nere o sfarfallii." : gpu.forced ? "Spenta dall'opzione --disable-gpu con cui è stato avviato Cloudy." : "Spenta: Cloudy disegna tutto via software (riattivala se hai aggiornato i driver)."}
+          >
+            <Switch on={gpu.enabled} onChange={(v) => !gpu.forced && switchGpu(v)} />
+          </Row>
+        )}
       </div>
     </>
   );

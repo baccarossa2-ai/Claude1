@@ -9,11 +9,11 @@ const INVOKE = new Set([
   "engine:ensure", "engine:respond", "engine:approve", "engine:abort", "engine:import",
   "mcp:start", "mcp:request", "mcp:stop",
   "secrets:get", "secrets:set",
-  "app:openExternal", "app:notify", "app:info",
+  "app:openExternal", "app:notify", "app:info", "app:gpu",
   "dialog:pickFolder", "dialog:saveFile",
   "win:minimize", "win:toggleMaximize", "win:close", "win:theme",
 ]);
-const EVENTS = new Set(["http:event", "shell:output", "claudecode:event", "claudecode:exit", "engine:event", "app:menu"]);
+const EVENTS = new Set(["http:event", "shell:output", "claudecode:event", "claudecode:exit", "engine:event", "app:menu", "app:gpu"]);
 
 contextBridge.exposeInMainWorld("cloudyNative", {
   platform: process.platform,

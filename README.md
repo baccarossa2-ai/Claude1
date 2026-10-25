@@ -77,6 +77,7 @@ Firma dell'APK: passa `-PcloudyKeystore=…  -PcloudyKeystorePassword=…  -Pclo
 - I modelli Claude via Claude Code consumano il tuo abbonamento Claude; via API il tuo credito Anthropic. Cloudy resta gratuito con i suoi limiti (25 messaggi e 70 crediti agente al giorno).
 - I server MCP locali (stdio) richiedono Node.js o Python sul PC.
 - Il computer Linux è un i686 emulato: ottimo per comandi, script lua/awk/sh e piccoli strumenti, non per programmi pesanti. La rete al suo interno è spenta di default.
+- Se la scheda video dà problemi (schermo nero, sfarfallii) spegni Impostazioni → Aspetto → *Accelerazione hardware* (o avvia con `--disable-gpu`; `--enable-gpu` la riattiva). Se il processo grafico va in crash, Cloudy te lo segnala con un avviso.
 - L'EXE e l'APK non sono firmati con un certificato di uno sviluppatore commerciale: Windows SmartScreen potrebbe chiedere conferma ("Ulteriori informazioni → Esegui comunque") e Android chiede di consentire l'installazione da origini sconosciute.
 
 Licenza MIT. Cloudy e cloudy-cli © 2026 Cloudy (MIT). Claude è un marchio di Anthropic.

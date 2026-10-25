@@ -47,6 +47,7 @@ export async function initApp() {
   setInterval(() => store.get().cloudy.token && refreshUsage(), 5 * 60 * 1000);
   if (isDesktop) {
     onNative("app:menu", (action) => window.dispatchEvent(new CustomEvent("cloudy:menu", { detail: action })));
+    onNative("app:gpu", () => toast("La scheda video ha dei problemi. Se vedi lo schermo nero o sfarfallii, spegni l'accelerazione hardware in Impostazioni → Aspetto.", "error", 12000));
   }
 }
 

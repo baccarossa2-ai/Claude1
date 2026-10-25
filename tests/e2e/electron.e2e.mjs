@@ -308,6 +308,13 @@ await step("interfaccia: selettore modelli, impostazioni Claude, app e artefatto
   await ev(() => window.cloudyDebug.store.set({ dialog: { type: "settings", section: "plugins" } }));
   await page.waitForTimeout(700);
   await shot("08-plugin");
+  await ev(() => window.cloudyDebug.store.set({ dialog: { type: "settings", section: "appearance" } }));
+  await page.waitForTimeout(700);
+  const gpuRow = await page.locator(".setting-row", { hasText: "Accelerazione hardware" }).count();
+  assert(gpuRow === 1, "manca l'interruttore Accelerazione hardware");
+  const gpu = await ev(() => window.cloudyNative.invoke("app:gpu"));
+  assert(gpu && typeof gpu.enabled === "boolean", "app:gpu non risponde: " + JSON.stringify(gpu));
+  await shot("08b-aspetto");
   await ev(() => window.cloudyDebug.store.set({ dialog: { type: "apps" } }));
   await page.waitForTimeout(900);
   await shot("09-app");
@@ -316,7 +323,7 @@ await step("interfaccia: selettore modelli, impostazioni Claude, app e artefatto
   await page.waitForTimeout(600);
   await shot("10-selettore-modelli");
   await page.keyboard.press("Escape");
-  return "artefatto con script eseguito in sandbox";
+  return "artefatto con script eseguito in sandbox, interruttore GPU presente";
 });
 
 await step("nessun errore JavaScript durante il test", async () => {

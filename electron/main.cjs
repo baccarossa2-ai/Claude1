@@ -22,7 +22,20 @@ if (!app.requestSingleInstanceLock()) {
 }
 app.setAppUserModelId("chat.cloudy.desktop");
 
+// Hardware acceleration can be switched off in Settings → Aspetto (or with
+// --disable-gpu); the choice lives in userData/gpu-off and --enable-gpu undoes
+// it. Chromium already falls back to software rendering by itself when the
+// GPU process keeps crashing; we only tell the user where the switch is.
 let win = null;
+const gpuOffFlag = () => path.join(app.getPath("userData"), "gpu-off");
+if (process.argv.includes("--enable-gpu")) fs.rmSync(gpuOffFlag(), { force: true });
+if (process.argv.includes("--disable-gpu") || fs.existsSync(gpuOffFlag())) app.disableHardwareAcceleration();
+let gpuCrashes = 0;
+app.on("child-process-gone", (_e, details) => {
+  if (details.type !== "GPU" || details.reason === "clean-exit") return;
+  if (++gpuCrashes === 2 && win && !win.isDestroyed()) win.webContents.send("app:gpu", { crashed: details.reason });
+});
+
 const statePath = () => path.join(app.getPath("userData"), "window.json");
 
 function loadBounds() {

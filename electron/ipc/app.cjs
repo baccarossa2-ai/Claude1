@@ -2,6 +2,7 @@
 // controls and the Windows title-bar overlay colours.
 const { app, BrowserWindow, Notification, dialog, ipcMain, nativeTheme, shell } = require("electron");
 const fs = require("node:fs");
+const path = require("node:path");
 
 function register({ getWindow }) {
   ipcMain.handle("app:openExternal", (_e, url) => {
@@ -13,6 +14,21 @@ function register({ getWindow }) {
     return true;
   });
   ipcMain.handle("app:info", () => ({ version: app.getVersion(), userData: app.getPath("userData"), platform: process.platform, arch: process.arch }));
+  // Hardware acceleration (userData/gpu-off, read in main.cjs): report the
+  // state, or switch it and restart, since Chromium decides it at startup.
+  ipcMain.handle("app:gpu", (_e, enable) => {
+    const flag = path.join(app.getPath("userData"), "gpu-off");
+    const forced = process.argv.includes("--disable-gpu");
+    const off = forced || fs.existsSync(flag);
+    if (typeof enable !== "boolean") return { enabled: !off, forced };
+    if (enable === !off) return { enabled: enable, forced };
+    if (enable) fs.rmSync(flag, { force: true });
+    else fs.writeFileSync(flag, "manual\n");
+    // Restart without the GPU switches, or --enable-gpu would undo the choice.
+    const args = process.argv.slice(1).filter((a) => a !== "--enable-gpu" && a !== "--disable-gpu");
+    setTimeout(() => (app.relaunch({ args }), app.exit(0)), 300);
+    return { enabled: enable, restarting: true };
+  });
   ipcMain.handle("dialog:saveFile", async (_e, { name, base64 }) => {
     const res = await dialog.showSaveDialog(getWindow(), { defaultPath: name });
     if (res.canceled || !res.filePath) return null;
